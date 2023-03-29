@@ -12,40 +12,82 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="stylesheet" href="/styles/reset.css" />
   </head>
   <body>
     <div class="app">
       <div class="app-panel">
         <a href="#" class="logo">
-					<img src="/images/logo.svg" alt="Logo Habbit App" />
-				</a>
+          <img src="/images/logo.svg" alt="Logo Habbit App" />
+        </a>
 
         <nav class="menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="" class="menu__link">
-                <img src="images/menu-logo-1.svg" alt="" />
-              </a>
+              <button href="#" class="menu__link menu__link-active">
+                <img src="../images/menu-logo-1.svg" alt="" />
+              </button>
             </li>
             <li class="menu__item">
-              <a href="" class="menu__link">
-                <img src="images/menu-logo-2.svg" alt="" />
-              </a>
+              <button href="#" class="menu__link">
+                <img src="../images/menu-logo-2.svg" alt="" />
+              </button>
             </li>
             <li class="menu__item">
-              <a href="" class="menu__link">
-                <img src="images/menu-logo-3.svg" alt="" />
-              </a>
+              <button href="#" class="menu__link">
+                <img src="../images/menu-logo-3.svg" alt="" />
+              </button>
             </li>
           </ul>
 
-          <a href="" class="menu__add">
-            <img src="images/menu-logo-4.svg" alt="" />
-          </a>
+          <button href="" class="menu__add">
+            <img src="../images/menu-logo-4.svg" alt="" />
+          </button>
         </nav>
       </div>
 
-      <div class="app-content"></div>
+      <div class="app-content">
+        <div class="app-container">
+          <header class="header">
+            <h1 class="title">Отжимания</h1>
+            <div class="progress">
+              <div class="progress__text">
+                <div class="progress__name">Прогресс</div>
+                <div clas="progress__percent">80%</div>
+              </div>
+
+              <div class="progress__bar">
+                <div class="progress__cover"></div>
+              </div>
+            </div>
+          </header>
+
+          <main class="main">
+            <div class="habbit-wrap">
+              <div class="habbit">
+                <div class="habbit__day">День 1</div>
+                <div class="habbit__comment">
+                  Первый подход всегда даётся тяжело
+                </div>
+                <button class="habbit__delete">
+                  <img src="../images/delete-icon.svg" alt="Удалить" />
+                </button>
+              </div>
+            </div>
+
+            <div class="habbit-wrap">
+              <div class="habbit">
+                <div class="habbit__day">День 2</div>
+                <form class="habbit__form">
+                  <input class="input__icon" type="text" placeholder="Комментарий" />
+                  <img class="input-icon input__icon" src="../images/comment-img.svg" alt="">
+                  <button class="habbit__btn">Готово</button>
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
     <script src="/scripts/index.js"></script>
   </body>
