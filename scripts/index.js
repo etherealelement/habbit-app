@@ -86,7 +86,7 @@ function rerenderContent(activeHabbit) {
                 <div class="habbit__comment">
                   ${activeHabbit.days[key].comment}
                 </div>
-                <button class="habbit__delete">
+                <button class="habbit__delete" onclick="deleteDay(${key})">
                   <img src="../images/delete-icon.svg" alt="Удалить" />
                 </button>
 		`;
@@ -126,6 +126,22 @@ function addDays(event) {
 	saveData();
 }
 
+// deleteDay
+
+function deleteDay(index) {
+	habbits = habbits.map(item => {
+		if(item.id === globalActiveHabbitId) {
+			item.days.splice(index, 1)
+			return {
+				...item,
+				days: item.days
+			};
+		}
+		return item;
+	});
+	rerender(globalActiveHabbitId);
+	saveData();
+}
 
 // init
 (() => {
