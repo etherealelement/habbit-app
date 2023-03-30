@@ -2,6 +2,7 @@
 
 let habbits = [];
 const HABBIT_KEY = "HABBIT_KEY";
+let globalActiveHabbitId;
 
 // page
 const page = {
@@ -95,11 +96,36 @@ function rerenderContent(activeHabbit) {
 }
 
 function rerender(activeHabbitId) {
+	globalActiveHabbitId = activeHabbitId;
   const activeHabbit = habbits.find((habbit) => habbit.id === activeHabbitId);
   rerenderMenu(activeHabbit);
   rerenderHead(activeHabbit);
 	rerenderContent(activeHabbit)
 }
+
+// work witch days
+function addDays(event) {
+	const form = event.target
+	event.preventDefault();
+	const data = new FormData(event.target);
+	const comment = data.get("comment");
+	if(!comment) {
+		form["comment"].classList.add("error");
+	}
+	habbits = habbits.map(item => {
+		if(item.id === globalActiveHabbitId) {
+			return {
+				...item,
+				days: item.days.concat([{comment}]),
+			}
+		}
+		return item;
+	});
+	form["comment"].value = " "; 
+	rerender(globalActiveHabbitId);
+	saveData();
+}
+
 
 // init
 (() => {

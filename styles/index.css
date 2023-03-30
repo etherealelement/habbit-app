@@ -205,6 +205,10 @@ input {
   flex: 1;
 }
 
+input.error {
+  border: 1px solid red;
+}
+
 input::placeholder {
   color: #8899a8;
 }
