@@ -5,14 +5,17 @@ const HABBIT_KEY = "HABBIT_KEY";
 
 // page
 const page = {
-	menu: document.querySelector(".menu__list"),
-	header: {
-		h1: document.querySelector(".title"),
-		progressPercent: document.querySelector(".progress__percent"),
-		progressCover: document.querySelector(".progress__cover"),
-	}
-}
-
+  menu: document.querySelector(".menu__list"),
+  header: {
+    h1: document.querySelector(".title"),
+    progressPercent: document.querySelector(".progress__percent"),
+    progressCover: document.querySelector(".progress__cover"),
+  },
+  content: {
+    daysContainer: document.querySelector(".habbit-wrap"),
+    daysNumber: document.querySelector(".habbit__day"),
+  },
+};
 
 // utils
 function loadData() {
@@ -38,14 +41,14 @@ function rerenderMenu(activeHabbit) {
       const element = document.createElement("button");
       element.setAttribute("menu-habbit-id", iterator.id);
       element.classList.add("menu__link");
-			element.addEventListener("click", ()=> rerender(iterator.id));
-			element.innerHTML = `
+      element.addEventListener("click", () => rerender(iterator.id));
+      element.innerHTML = `
 				<img src="../images/${iterator.icon}.svg" alt="${iterator.name}"/>`;
-			if(activeHabbit.id === iterator.id) {
-					element.classList.add("menu__link-active")
-			}
-			page.menu.appendChild(element);
-			continue;
+      if (activeHabbit.id === iterator.id) {
+        element.classList.add("menu__link-active");
+      }
+      page.menu.appendChild(element);
+      continue;
     }
     if (activeHabbit.id === iterator.id) {
       existed.classList.add("menu__link-active");
@@ -58,21 +61,44 @@ function rerenderMenu(activeHabbit) {
 // Render Content
 
 function rerenderHead(activeHabbit) {
-		if(!activeHabbit){
-			return;
-		};
-		page.header.h1.innerText = activeHabbit.name;
-		const progress = activeHabbit.days.length / activeHabbit.target > 1 ? 100 : activeHabbit.days.length / activeHabbit.target * 100;
-		page.header.progressPercent.innerText = progress.toFixed(0) + " %";
-		page.header.progressCover.setAttribute("style",`width: ${progress}%`)
-};
+  if (!activeHabbit) {
+    return;
+  }
+  page.header.h1.innerText = activeHabbit.name;
+  const progress =
+    activeHabbit.days.length / activeHabbit.target > 1
+      ? 100
+      : (activeHabbit.days.length / activeHabbit.target) * 100;
+  page.header.progressPercent.innerText = progress.toFixed(0) + " %";
+  page.header.progressCover.setAttribute("style", `width: ${progress}%`);
+}
 
+// rerender Content
 
+function rerenderContent(activeHabbit) {
+  page.content.daysContainer.innerHTML = " ";
+  for (const key in activeHabbit.days) {
+    const element = document.createElement("div");
+    element.classList.add("habbit");
+    element.innerHTML = `
+                <div class="habbit__day">День ${Number(key) + 1}</div>
+                <div class="habbit__comment">
+                  ${activeHabbit.days[key].comment}
+                </div>
+                <button class="habbit__delete">
+                  <img src="../images/delete-icon.svg" alt="Удалить" />
+                </button>
+		`;
+	page.content.daysContainer.appendChild(element)
+  }
+	page.content.daysNumber.innerHTML = `День ${activeHabbit.days.length + 1}`
+}
 
 function rerender(activeHabbitId) {
   const activeHabbit = habbits.find((habbit) => habbit.id === activeHabbitId);
   rerenderMenu(activeHabbit);
-	rerenderHead(activeHabbit);
+  rerenderHead(activeHabbit);
+	rerenderContent(activeHabbit)
 }
 
 // init
