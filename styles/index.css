@@ -33,6 +33,10 @@ body {
   align-items: center;
 }
 
+.logo img{
+  margin-bottom: 50px;
+}
+
 .menu__list {
   display: flex;
   flex-direction: column;
