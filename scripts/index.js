@@ -18,6 +18,7 @@ const page = {
   },
   popup: {
     index: document.getElementById("add-popup"),
+    iconField: document.querySelector(".popup__form input[name='icon']"),
   }
 };
 
@@ -155,6 +156,21 @@ function togglePopup() {
       page.popup.index.classList.add("cover_hidden");
     }
 }
+
+// working witch habbits
+page.header.h1.addEventListener("click", function(){
+  console.log(this);
+});
+
+function setIcon(context, icon) {
+  page.popup.iconField.value = icon;
+  const activeIcon = document.querySelector('.icon.icon-active');
+  activeIcon.classList.remove('icon-active');
+  context.classList.add("icon-active")
+  
+}
+
+
 
 // init
 (() => {
