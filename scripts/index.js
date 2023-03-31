@@ -35,6 +35,29 @@ function saveData() {
   localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
 }
 
+function validateForm(form, fields) {
+  const formData = new FormData(form);
+  res = {};
+  for (const iterator of fields) {
+    const fieldElement = formData.get(iterator);
+    form[iterator].classList.remove("error");
+    if(!fieldElement) {
+      form[iterator].classList.add("error");
+    }
+    res[iterator] = fieldElement;
+  }
+  let isValid = true;
+  for (const iterator of fields) {
+    if(!res[iterator]) {
+      isValid = false;
+    }
+  }
+  if (!isValid) {
+    return;
+  }
+  return res;
+}
+
 // render;
 function rerenderMenu(activeHabbit) {
   if (!activeHabbit) {
@@ -170,6 +193,12 @@ function setIcon(context, icon) {
   
 }
 
+// addHabbit
+
+function addHabbit(event) { 
+
+  event.preventDefault();
+}
 
 
 // init
