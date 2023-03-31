@@ -16,6 +16,9 @@ const page = {
     daysContainer: document.querySelector(".habbit-wrap"),
     daysNumber: document.querySelector(".habbit__day"),
   },
+  popup: {
+    index: document.getElementById("add-popup"),
+  }
 };
 
 // utils
@@ -141,6 +144,16 @@ function deleteDay(index) {
 	});
 	rerender(globalActiveHabbitId);
 	saveData();
+}
+
+// open/close popup
+
+function togglePopup() { 
+    if(page.popup.index.classList.contains("cover_hidden")) {
+      page.popup.index.classList.remove("cover_hidden");
+    } else { 
+      page.popup.index.classList.add("cover_hidden");
+    }
 }
 
 // init
